@@ -36,10 +36,14 @@ class Signal_processing():
     def signal_detrending(self, data_buffer):
         '''
         remove overall trending
-        
+        Handles null values (substitue by the mean)
         '''
+        nulls = np.isnan(data_buffer)
+        if nulls.sum() > 0.6*len(data_buffer):
+            raise ValueError(f"Too many null values in the data buffer ({100*nulls.sum()}/{len(data_buffer)}%)")
+
+        data_buffer = np.nan_to_num(data_buffer, nan=np.nanmean(data_buffer))
         detrended_data = signal.detrend(data_buffer)
-        
         return detrended_data
         
     def interpolation(self, data_buffer, times):
