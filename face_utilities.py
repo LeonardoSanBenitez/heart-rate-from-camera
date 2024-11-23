@@ -3,6 +3,7 @@ import numpy as np
 import dlib
 from imutils import face_utils
 import imutils
+import logging
 from collections import OrderedDict
 
 
@@ -69,9 +70,9 @@ class Face_utilities():
         '''
         #face_aligned = self.face_align.align(frame,gray,rects[0]) # align face
         
-        # print("1: aligned_shape_1 ")
-        # print(shape)
-        # print("---")
+        # logging.debug("1: aligned_shape_1 ")
+        # logging.debug(shape)
+        # logging.debug("---")
         
         if (len(shape)==68):
 			# extract the left and right eye (x, y)-coordinates
@@ -124,8 +125,8 @@ class Face_utilities():
         aligned_face = cv2.warpAffine(frame, M, (w, h),
             flags=cv2.INTER_CUBIC)
             
-        #print("1: aligned_shape_1 = {}".format(aligned_shape))
-        #print(aligned_shape.shape)
+        #logging.debug("1: aligned_shape_1 = {}".format(aligned_shape))
+        #logging.debug(aligned_shape.shape)
         
         if(len(shape)==68):
             shape = np.reshape(shape,(68,1,2))
@@ -146,7 +147,7 @@ class Face_utilities():
         aligned_shape = cv2.transform(shape, M)
         aligned_shape = np.squeeze(aligned_shape)        
             
-        # print("---")
+        # logging.debug("---")
         # return aligned_face, aligned_shape
         return aligned_face,aligned_shape
     
@@ -185,12 +186,12 @@ class Face_utilities():
             gender (str): gender
         '''
         if self.age_net is None:
-            print("[INFO] load age and gender models ...")
+            logging.debug("[INFO] load age and gender models ...")
             self.age_net = cv2.dnn.readNetFromCaffe("age_gender_models/deploy_age.prototxt", 
                                                     "age_gender_models/age_net.caffemodel")
             self.gender_net = cv2.dnn.readNetFromCaffe("age_gender_models/deploy_gender.prototxt", 
                                                         "age_gender_models/gender_net.caffemodel")
-            print("[INFO] Load models - DONE!")
+            logging.debug("[INFO] Load models - DONE!")
         
         if face is None:
             return
@@ -219,9 +220,9 @@ class Face_utilities():
             shape (array): facial landmarks' co-ords in format of of tuples (x,y)
         '''
         if self.predictor is None:
-            print("[INFO] load " + type + " facial landmarks model ...")
+            logging.debug("[INFO] load " + type + " facial landmarks model ...")
             self.predictor = dlib.shape_predictor("./assets/shape_predictor_" + type + "_face_landmarks.dat")
-            print("[INFO] Load model - DONE!")
+            logging.debug("[INFO] Load model - DONE!")
         
         if frame is None:
             return None, None
@@ -412,9 +413,9 @@ class Face_utilities():
                 # aligned_shape, rects_2 = self.get_landmarks(aligned_face, "68")
                 # if aligned_shape is None:
                     # return None
-        # print("2: aligned_shape")
-        # print(aligned_shape)
-        # print("---")
+        # logging.debug("2: aligned_shape")
+        # logging.debug(aligned_shape)
+        # logging.debug("---")
         
         #assign to last params
         self.last_age = age

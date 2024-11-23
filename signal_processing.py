@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import time
+import logging
 from scipy import signal
 
 
@@ -68,7 +69,7 @@ class Signal_processing():
         fft = np.abs(raw_fft)**2
         
         interest_idx = np.where((freqs_in_minute > 50) & (freqs_in_minute < 180))[0]
-        print(freqs_in_minute)
+        logging.debug(freqs_in_minute)
         interest_idx_sub = interest_idx[:-1].copy() #advoid the indexing error
         freqs_of_interest = freqs_in_minute[interest_idx_sub]
         
