@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "heart-rate-from-camera"
+version = "0.1.0"
+description = ""
+authors = ["Leonardo Benitez <lsbenitezpereira@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "~3.10"
+pyppg = "~1.0"
+scipy = "~1.9"
+dlib = "^19.0"
+imutils = "~0.5"
+numpy = "~1.23"
+opencv-python = "~4.5"
+jupyter = "~1.1"
+matplotlib = "~3.6"
+pandas = ">=1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
