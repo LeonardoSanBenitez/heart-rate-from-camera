@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import time
 import logging
-from scipy import signal
 import tempfile
 import copy
 import traceback
@@ -61,7 +60,7 @@ class Signal_processing():
             raise ValueError(f"Too many null values in the data buffer ({100*nulls.sum()}/{len(data_buffer)}%)")
 
         data_buffer = np.nan_to_num(data_buffer, nan=np.nanmean(data_buffer))
-        detrended_data = signal.detrend(data_buffer)
+        detrended_data = scipy.signal.detrend(data_buffer)
         return detrended_data
         
     def interpolation(self, data_buffer, times):
@@ -112,9 +111,9 @@ class Signal_processing():
         nyq = 0.5 * fs
         low = lowcut / nyq
         high = highcut / nyq
-        b, a = signal.butter(order, [low, high], btype='band')
+        b, a = scipy.signal.butter(order, [low, high], btype='band')
         
-        filtered_data = signal.lfilter(b, a, data_buffer)
+        filtered_data = scipy.signal.lfilter(b, a, data_buffer)
         
         return filtered_data
 
