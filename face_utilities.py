@@ -10,6 +10,7 @@ from collections import OrderedDict
 class Face_utilities():
     '''
     This class contains all needed functions to work with faces in a frame
+    Strongly inspired by the work of https://github.com/habom2310/Heart-rate-measurement-using-camera
     '''
     
     def __init__(self, face_width = 200):
@@ -426,14 +427,4 @@ class Face_utilities():
         
         #return rects, face, (age, gender), shape, aligned_face, mask
         return rects, face, (age, gender), shape, aligned_face, aligned_shape
-        
-    
-    
-    
-    
-    
-    
-    
-    
-        
         
