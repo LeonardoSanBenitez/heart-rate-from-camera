@@ -8,5 +8,7 @@ make setup
 
 Environemnt start (every time):
 ```
-make run-local
+make run
 ```
+
+You may have to install make and poetry.

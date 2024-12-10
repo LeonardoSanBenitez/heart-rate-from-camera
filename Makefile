@@ -4,5 +4,5 @@
 setup:
 	poetry install --no-root
 
-run-local:
+run:
 	poetry run jupyter notebook
