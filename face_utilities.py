@@ -427,4 +427,3 @@ class Face_utilities():
         
         #return rects, face, (age, gender), shape, aligned_face, mask
         return rects, face, (age, gender), shape, aligned_face, aligned_shape
-        

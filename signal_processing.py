@@ -44,7 +44,6 @@ class Signal_processing():
         '''
         normalize the input data buffer
         '''
-        
         #normalized_data = (data_buffer - np.mean(data_buffer))/np.std(data_buffer)
         normalized_data = data_buffer/np.linalg.norm(data_buffer)
         
@@ -76,10 +75,6 @@ class Signal_processing():
         return interpolated_data
         
     def fft(self, data_buffer, fps):
-        '''
-        
-        '''
-        
         L = len(data_buffer)
         
         freqs = float(fps) / L * np.arange(L / 2 + 1)
@@ -95,17 +90,8 @@ class Signal_processing():
         freqs_of_interest = freqs_in_minute[interest_idx_sub]
         
         fft_of_interest = fft[interest_idx_sub]
-        
-        
-        # pruned = fft[interest_idx]
-        # pfreq = freqs_in_minute[interest_idx]
-        
-        # freqs_of_interest = pfreq 
-        # fft_of_interest = pruned
-        
-        
-        return fft_of_interest, freqs_of_interest
 
+        return fft_of_interest, freqs_of_interest
 
     def butter_bandpass_filter(self, data_buffer, lowcut, highcut, fs, order=5):
         nyq = 0.5 * fs
